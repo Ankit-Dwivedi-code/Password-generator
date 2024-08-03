@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassWord Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Password Generator</h1>
+    <div class="password">
+        <input type="text" placeholder="Random Password" id="merapass">
+        <button id="weak" onclick="weakpass()">Weak Password</button>
+        <button id="strong" onclick="strongpass()">Strong Password</button>
+        <button id="funny" onclick="funny()">Funny PassWord</button>
+    </div>
+</body>
+<script>
+    let merapass = document.getElementById("merapass")
+    let num = "0123456789"
+    let lowercase = "abcdefghijklmnopqrstuvwxyz"
+    let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    let special_char = "!@#$%^&*()_+-={}[]|:;"
+    let passlength = 8;
+    merapass.value = ""
+
+    let pass = num + lowercase + uppercase + special_char
+
+    class MyPassword {
+        weakpassword() {
+            let password = ""
+            merapass.value = ""
+            password += uppercase[Math.floor(Math.random() * uppercase.length)];
+            password += lowercase[Math.floor(Math.random() * lowercase.length)];
+            password += num[Math.floor(Math.random() * num.length)];
+            password += special_char[Math.floor(Math.random() * special_char.length)];
+
+            merapass.value = password
+        }
+
+        strongpassword() {
+            let password = ""
+            merapass.value = ""
+            password += uppercase[Math.floor(Math.random() * uppercase.length)];
+            password += lowercase[Math.floor(Math.random() * lowercase.length)];
+            password += num[Math.floor(Math.random() * num.length)];
+            password += special_char[Math.floor(Math.random() * special_char.length)];
+
+            for (let i = 0; i < passlength - 4; i++) {
+                password += pass[Math.floor(Math.random() * pass.length)];
+
+            }
+
+            merapass.value = password
+
+        }
+
+        funnypassword() {
+            merapass.value = ""
+            const funnyWords = [
+                "bananaSplit",
+                "iloveyou",
+                "pizzaIsLife",
+                "sillyMonkey123",
+                "password1234",
+                "laughOutLoud!",
+                "abc123",
+                "funkyChickenDance",
+                "password",
+                "1234567890"
+            ];
+
+            // Randomly select a funny word
+            const randomIndex = Math.floor(Math.random() * funnyWords.length);
+            const funnyWord = funnyWords[randomIndex];
+
+            merapass.value = funnyWord
+        }
+    }
+
+    let x = new MyPassword()
+    function weakpass(params) {
+        x.weakpassword()
+    }
+    function strongpass(params) {
+        x.strongpassword()
+    }
+    function funny(params) {
+        x.funnypassword()
+    }
+</script>
+
+</html>
